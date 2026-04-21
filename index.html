@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toque do Caos - Ficha Completa</title>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;700&family=Cinzel+Decorative:wght@700&family=Crimson+Pro:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fenda-purple: #9d00ff;
+    --fenda-magenta: #ff00ff;
+    --fenda-cyan: #00ffff;
+    --bg-black: #0a0510;
+    --panel-bg: rgba(20, 10, 30, 0.8);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-black);
+    font-family: 'Crimson Pro', serif;
+    padding: 40px 20px;
+    perspective: 1500px;
+  }
+
+  /* Fundo Animado */
+  .void-bg {
+    position: fixed; inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(157, 0, 255, 0.15) 0%, transparent 70%);
+    z-index: -1;
+  }
+
+  .card-aura {
+    position: relative;
+    padding: 2px;
+    background: linear-gradient(45deg, var(--fenda-purple), var(--fenda-cyan), var(--fenda-magenta), var(--fenda-purple));
+    background-size: 400% 400%;
+    animation: auraFlow 8s linear infinite;
+    border-radius: 12px;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 50px rgba(157, 0, 255, 0.2);
+  }
+
+  @keyframes auraFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .card {
+    width: 450px;
+    background: linear-gradient(180deg, #12081a 0%, #0a0510 100%);
+    border-radius: 10px;
+    padding: 30px;
+    color: #fff;
+    backdrop-filter: blur(15px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── HEADER ── */
+  .header { text-align: center; margin-bottom: 25px; }
+  
+  .glitch-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    text-shadow: 2px 0 var(--fenda-cyan), -2px 0 var(--fenda-magenta);
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+  }
+
+  .user-info {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: var(--fenda-cyan);
+    opacity: 0.8;
+  }
+
+  /* ── GRID DE ATRIBUTOS ── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .stat-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(157, 0, 255, 0.2);
+    padding: 8px 4px;
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  .stat-box.highlight { border-color: var(--fenda-magenta); background: rgba(255, 0, 255, 0.05); }
+
+  .stat-label {
+    display: block;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 3px;
+  }
+
+  .stat-value {
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: #fff;
+  }
+
+  /* ── EFEITOS DE COMBATE ── */
+  .combat-section {
+    display: flex;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px dashed rgba(0, 255, 255, 0.3);
+    margin-bottom: 20px;
+  }
+
+  .combat-item { text-align: center; flex: 1; }
+  .combat-item:not(:last-child) { border-right: 1px solid rgba(255, 255, 255, 0.1); }
+
+  /* ── DESCRIÇÃO ── */
+  .section-title {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--fenda-magenta);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--fenda-magenta), transparent); }
+
+  .desc-body {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 20px;
+    text-align: justify;
+    background: rgba(157, 0, 255, 0.05);
+    padding: 15px;
+    border-radius: 8px;
+  }
+
+  .keyword { color: var(--fenda-cyan); font-weight: 700; }
+
+  /* ── REGRAS ESPECIAIS ── */
+  .rules-box {
+    background: var(--panel-bg);
+    border-left: 3px solid var(--fenda-purple);
+    padding: 15px;
+    margin-bottom: 25px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.85rem;
+  }
+
+  .rule-item { margin-bottom: 10px; }
+  .rule-item b { color: var(--fenda-cyan); display: block; margin-bottom: 2px; font-size: 0.7rem; text-transform: uppercase; }
+
+  /* ── TABELA DE CUSTO ── */
+  .cost-table {
+    width: 100%;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.75rem;
+    border-collapse: collapse;
+  }
+
+  .cost-table tr { border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+  .cost-table td { padding: 6px 0; }
+  .cost-table td:last-child { text-align: right; font-weight: 700; color: var(--fenda-cyan); }
+  
+  .total-row { color: var(--fenda-magenta) !important; font-size: 1rem; border: none !important; }
+
+  /* Efeito de scanline */
+  .scanline {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0, 255, 255, 0.02) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="void-bg"></div>
+
+<div class="card-aura" id="tilt">
+  <div class="card">
+    <div class="scanline"></div>
+
+    <header class="header">
+      <div class="user-info">USUÁRIO: JOHN SMITH • NP 1</div>
+      <h1 class="glitch-title">Toque do Caos</h1>
+    </header>
+
+    <div class="stats-grid">
+      <div class="stat-box highlight"><span class="stat-label">Custo PE</span><span class="stat-value">10 PE</span></div>
+      <div class="stat-box highlight"><span class="stat-label">Custo MP</span><span class="stat-value">5 MP</span></div>
+      <div class="stat-box"><span class="stat-label">Cast</span><span class="stat-value">Padrão</span></div>
+      <div class="stat-box"><span class="stat-label">Alcance</span><span class="stat-value">Toque</span></div>
+      <div class="stat-box"><span class="stat-label">Área</span><span class="stat-value">Alvo Único</span></div>
+      <div class="stat-box"><span class="stat-label">Duração</span><span class="stat-value">Instan.</span></div>
+      <div class="stat-box" style="grid-column: span 2;"><span class="stat-label">Categoria</span><span class="stat-value">Ofensivo</span></div>
+    </div>
+
+    <div class="combat-section">
+      <div class="combat-item">
+        <span class="stat-label">Dano</span>
+        <span class="stat-value" style="color: var(--fenda-magenta);">1d4 ~ 1d12</span>
+      </div>
+      <div class="combat-item">
+        <span class="stat-label">Precisão</span>
+        <span class="stat-value" style="color: var(--fenda-cyan);">+1</span>
+      </div>
+      <div class="combat-item">
+        <span class="stat-label">Descritores</span>
+        <span class="stat-value">[Devoração]</span>
+      </div>
+    </div>
+
+    <h2 class="section-title">Descrição</h2>
+    <div class="desc-body">
+      Ao tocar o alvo, libera uma energia instável que distorce a realidade imediata. O dano causado é imprevisível, oscilando conforme o fluxo do caos. <br><br>
+      Através do descritor <span class="keyword">[Devoração]</span>, o usuário consome parte da essência do alvo para subtrair e utilizar <b>UMA</b> de suas habilidades temporariamente (aleatória). O alvo fica <span class="keyword">Marcado</span> (+2 no acerto contra ele e impede furtividade).
+    </div>
+
+    <h2 class="section-title">Regras Especiais</h2>
+    <div class="rules-box">
+      <div class="rule-item">
+        <b>Mecânica do Dano Caótico</b>
+        Rolar 1d6 para definir o dado: 1(d4), 2(d6), 3(d8), 4(d10), 5(d12). Se 6, re-role.
+      </div>
+      <div class="rule-item">
+        <b>Teste de Acerto</b>
+        1d20 + Mod. Força + 1 (Precisão) vs CA.
+      </div>
+    </div>
+
+    <h2 class="section-title">Detalhamento de PE</h2>
+    <table class="cost-table">
+      <tr><td>Núcleo Caótico (1 dado)</td><td>1 PE</td></tr>
+      <tr><td>Precisão (+1)</td><td>1 PE</td></tr>
+      <tr><td>Status (Marcado)</td><td>3 PE</td></tr>
+      <tr><td>Descritor ([Devoração])</td><td>5 PE</td></tr>
+      <tr><td>Alcance/Área/Duração</td><td>0 PE</td></tr>
+      <tr class="total-row"><td>TOTAL</td><td>10 PE</td></tr>
+    </table>
+
+  </div>
+</div>
+
+<script>
+  const tilt = document.getElementById('tilt');
+  document.body.addEventListener('mousemove', (e) => {
+    let xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+    let yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+    tilt.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+  });
+
+  document.body.addEventListener('mouseleave', () => {
+    tilt.style.transform = `rotateY(0deg) rotateX(0deg)`;
+  });
+</script>
+
+</body>
+</html>
